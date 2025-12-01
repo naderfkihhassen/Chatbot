@@ -1,5 +1,5 @@
 const API_KEY =
-  "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";
+  "sk-or-v1-YOUR_KEY_HERE";
 
 const chatContainer = document.getElementById("chat-container");
 const userInput = document.getElementById("user-input");
