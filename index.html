@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Chat - OpenRouter</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <h1>AI Chat</h1>
+        <p class="subtitle">Powered by OpenRouter</p>
+      </header>
+
+      <div class="model-select-card">
+        <label for="model-select">Choose AI Model:</label>
+        <select id="model-select">
+          <option value="anthropic/claude-3.5-haiku">
+            Claude 3.5 Haiku (Fast & Cheap)
+          </option>
+          <option value="anthropic/claude-3.5-sonnet">
+            Claude 3.5 Sonnet (Best)
+          </option>
+          <option value="openai/gpt-4o-mini">GPT-4o Mini (Fast)</option>
+          <option value="openai/gpt-4o">GPT-4o (Smart)</option>
+          <option value="meta-llama/llama-3.1-8b-instruct">
+            Llama 3.1 8B (Free!)
+          </option>
+          <option value="google/gemini-2.0-flash-exp:free">
+            Gemini 2.0 Flash (Free!)
+          </option>
+        </select>
+      </div>
+
+      <div class="chat-container" id="chat-container">
+        <div class="welcome-message">
+          <h2>Welcome</h2>
+          <p>
+            Start chatting with AI. Choose a model above and type your message
+            below.
+          </p>
+        </div>
+      </div>
+
+      <div class="input-area">
+        <textarea
+          id="user-input"
+          placeholder="Type your message here..."
+          rows="3"
+        ></textarea>
+        <button id="send-btn" class="btn btn-send">Send</button>
+        <button id="clear-btn" class="btn btn-clear">Clear Chat</button>
+      </div>
+
+      <div class="status" id="status"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
