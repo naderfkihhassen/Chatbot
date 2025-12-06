@@ -1,5 +1,8 @@
-const API_KEY =
-  "sk-or-v1-YOUR_KEY_HERE";
+const apiKeySetup = document.getElementById("api-key-setup");
+const chatInterface = document.getElementById("chat-interface");
+const apiKeyInput = document.getElementById("api-key-input");
+const saveKeyBtn = document.getElementById("save-key-btn");
+const changeKeyBtn = document.getElementById("change-key-btn");
 
 const chatContainer = document.getElementById("chat-container");
 const userInput = document.getElementById("user-input");
@@ -10,6 +13,83 @@ const status = document.getElementById("status");
 
 let messages = [];
 
+init();
+
+function init() {
+  const apiKey = getApiKey();
+
+  if (apiKey) {
+    showChatInterface();
+  } else {
+    showApiKeySetup();
+  }
+}
+
+function getApiKey() {
+  return localStorage.getItem("openrouter-api-key");
+}
+
+function saveApiKey(key) {
+  localStorage.setItem("openrouter-api-key", key);
+}
+
+function removeApiKey() {
+  localStorage.removeItem("openrouter-api-key");
+}
+
+function showApiKeySetup() {
+  apiKeySetup.classList.remove("hidden");
+  chatInterface.classList.add("hidden");
+  apiKeyInput.focus();
+}
+
+function showChatInterface() {
+  apiKeySetup.classList.add("hidden");
+  chatInterface.classList.remove("hidden");
+  userInput.focus();
+}
+
+saveKeyBtn.addEventListener("click", () => {
+  const key = apiKeyInput.value.trim();
+
+  if (!key) {
+    alert("Please enter an API key");
+    return;
+  }
+
+  if (!key.startsWith("sk-or-v1-")) {
+    alert('Invalid API key format. OpenRouter keys start with "sk-or-v1-"');
+    return;
+  }
+
+  saveApiKey(key);
+  apiKeyInput.value = "";
+  showChatInterface();
+  status.textContent = "API key saved securely!";
+  setTimeout(() => (status.textContent = ""), 3000);
+});
+
+changeKeyBtn.addEventListener("click", () => {
+  if (confirm("Change API key? This will clear your chat history.")) {
+    removeApiKey();
+    messages = [];
+    chatContainer.innerHTML = `
+            <div class="welcome-message">
+                <h2>Welcome!</h2>
+                <p>Start chatting with AI. Choose a model above and type your message below.</p>
+            </div>
+        `;
+    showApiKeySetup();
+  }
+});
+
+apiKeyInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    e.preventDefault();
+    saveKeyBtn.click();
+  }
+});
+
 sendBtn.addEventListener("click", sendMessage);
 
 userInput.addEventListener("keydown", (e) => {
@@ -19,6 +99,7 @@ userInput.addEventListener("keydown", (e) => {
   }
 });
 
+// Clear chat
 clearBtn.addEventListener("click", () => {
   if (confirm("Clear all messages?")) {
     messages = [];
@@ -37,8 +118,11 @@ async function sendMessage() {
 
   if (!userMessage) return;
 
-  if (API_KEY === "sk-or-v1-YOUR_KEY_HERE") {
-    alert("Please add your OpenRouter API key in script.js!");
+  const apiKey = getApiKey();
+
+  if (!apiKey) {
+    alert("No API key found. Please set up your API key first.");
+    showApiKeySetup();
     return;
   }
 
@@ -65,7 +149,7 @@ async function sendMessage() {
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${API_KEY}`,
+          Authorization: `Bearer ${apiKey}`,
           "Content-Type": "application/json",
           "HTTP-Referer": window.location.href,
           "X-Title": "Simple AI Chat",
@@ -165,5 +249,3 @@ function escapeHtml(text) {
   div.textContent = text;
   return div.innerHTML;
 }
-
-userInput.focus();

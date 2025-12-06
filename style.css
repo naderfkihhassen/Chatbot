@@ -32,6 +32,95 @@ header h1 {
   opacity: 0.9;
 }
 
+.api-key-setup {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.api-key-setup h2 {
+  color: #1f2937;
+  margin-bottom: 1rem;
+}
+
+.api-key-setup p {
+  color: #6b7280;
+  margin-bottom: 1.5rem;
+}
+
+.api-key-form {
+  display: flex;
+  gap: 0.5rem;
+  max-width: 500px;
+  margin: 0 auto 1rem;
+}
+
+#api-key-input {
+  flex: 1;
+  padding: 0.75rem;
+  border: 2px solid #e5e7eb;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+#api-key-input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.note {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  margin-top: 1rem;
+}
+
+.note a {
+  color: #667eea;
+  text-decoration: none;
+}
+
+.note a:hover {
+  text-decoration: underline;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.key-status {
+  background: white;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.key-indicator {
+  color: #10b981;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+.btn-small {
+  padding: 0.4rem 0.8rem;
+  background: #6b7280;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-small:hover {
+  background: #4b5563;
+}
+
 .model-select-card {
   background: white;
   padding: 1rem;
@@ -228,6 +317,15 @@ header h1 {
   transform: none;
 }
 
+.btn-primary {
+  background: #667eea;
+  color: white;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #5568d3;
+}
+
 .btn-send {
   background: #667eea;
   color: white;
@@ -259,6 +357,10 @@ header h1 {
     font-size: 2rem;
   }
 
+  .api-key-form {
+    flex-direction: column;
+  }
+
   .model-select-card {
     flex-direction: column;
     align-items: stretch;
@@ -278,5 +380,10 @@ header h1 {
 
   .chat-container {
     max-height: 400px;
+  }
+
+  .key-status {
+    flex-direction: column;
+    gap: 0.5rem;
   }
 }

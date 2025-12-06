@@ -13,47 +13,74 @@
         <p class="subtitle">Powered by OpenRouter</p>
       </header>
 
-      <div class="model-select-card">
-        <label for="model-select">Choose AI Model:</label>
-        <select id="model-select">
-          <option value="anthropic/claude-3.5-haiku">
-            Claude 3.5 Haiku (Fast & Cheap)
-          </option>
-          <option value="anthropic/claude-3.5-sonnet">
-            Claude 3.5 Sonnet (Best)
-          </option>
-          <option value="openai/gpt-4o-mini">GPT-4o Mini (Fast)</option>
-          <option value="openai/gpt-4o">GPT-4o (Smart)</option>
-          <option value="meta-llama/llama-3.1-8b-instruct">
-            Llama 3.1 8B (Free!)
-          </option>
-          <option value="google/gemini-2.0-flash-exp:free">
-            Gemini 2.0 Flash (Free!)
-          </option>
-        </select>
-      </div>
-
-      <div class="chat-container" id="chat-container">
-        <div class="welcome-message">
-          <h2>Welcome</h2>
-          <p>
-            Start chatting with AI. Choose a model above and type your message
-            below.
-          </p>
+      <div class="api-key-setup" id="api-key-setup">
+        <h2>Setup API Key</h2>
+        <p>Enter your OpenRouter API key to start chatting.</p>
+        <div class="api-key-form">
+          <input
+            type="password"
+            id="api-key-input"
+            placeholder="sk-or-v1-..."
+            autocomplete="off"
+          />
+          <button id="save-key-btn" class="btn btn-primary">Save Key</button>
         </div>
+        <p class="note">
+          Don't have a key? Get one at
+          <a href="https://openrouter.ai" target="_blank">openrouter.ai</a
+          ><br />
+          Your key is stored locally in your browser only.
+        </p>
       </div>
 
-      <div class="input-area">
-        <textarea
-          id="user-input"
-          placeholder="Type your message here..."
-          rows="3"
-        ></textarea>
-        <button id="send-btn" class="btn btn-send">Send</button>
-        <button id="clear-btn" class="btn btn-clear">Clear Chat</button>
-      </div>
+      <div class="chat-interface hidden" id="chat-interface">
+        <div class="key-status">
+          <span class="key-indicator">API Key Active</span>
+          <button id="change-key-btn" class="btn-small">Change Key</button>
+        </div>
 
-      <div class="status" id="status"></div>
+        <div class="model-select-card">
+          <label for="model-select">Choose AI Model:</label>
+          <select id="model-select">
+            <option value="anthropic/claude-3.5-haiku">
+              Claude 3.5 Haiku (Fast & Cheap)
+            </option>
+            <option value="anthropic/claude-3.5-sonnet">
+              Claude 3.5 Sonnet (Best)
+            </option>
+            <option value="openai/gpt-4o-mini">GPT-4o Mini (Fast)</option>
+            <option value="openai/gpt-4o">GPT-4o (Smart)</option>
+            <option value="meta-llama/llama-3.1-8b-instruct">
+              Llama 3.1 8B (Free!)
+            </option>
+            <option value="google/gemini-2.0-flash-exp:free">
+              Gemini 2.0 Flash (Free!)
+            </option>
+          </select>
+        </div>
+
+        <div class="chat-container" id="chat-container">
+          <div class="welcome-message">
+            <h2>Welcome!</h2>
+            <p>
+              Start chatting with AI. Choose a model above and type your message
+              below.
+            </p>
+          </div>
+        </div>
+
+        <div class="input-area">
+          <textarea
+            id="user-input"
+            placeholder="Type your message here..."
+            rows="3"
+          ></textarea>
+          <button id="send-btn" class="btn btn-send">Send</button>
+          <button id="clear-btn" class="btn btn-clear">Clear Chat</button>
+        </div>
+
+        <div class="status" id="status"></div>
+      </div>
     </div>
 
     <script src="script.js"></script>
