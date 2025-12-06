@@ -99,7 +99,6 @@ userInput.addEventListener("keydown", (e) => {
   }
 });
 
-// Clear chat
 clearBtn.addEventListener("click", () => {
   if (confirm("Clear all messages?")) {
     messages = [];
